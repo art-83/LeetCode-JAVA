@@ -1,7 +1,9 @@
 package com.mysolutions.leetcode;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class Solution {
     public int[] twoSum(int[] nums, int target) {
@@ -71,4 +73,60 @@ public class Solution {
         return list;
     }
 
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for(Character c : s.toCharArray()) {
+            if(c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                if(stack.isEmpty()) {
+                    return false;
+                }
+                Character pop = stack.pop();
+                if(pop == '(' && c != ')') {
+                    return false;
+                }
+                if(pop == '{' && c != '}') {
+                    return false;
+                }
+                if(pop == '[' && c != ']') {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public int removeDuplicates(int[] nums) {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        for(int n : nums) {
+            if(!arrayList.contains(n)) {
+                arrayList.add(n);
+            }
+        }
+        for(int i = 0; i < arrayList.size(); i++) {
+            nums[i] = arrayList.get(i);
+        }
+        return arrayList.size();
+    }
+
+    public int strStr(String haystack, String needle) {
+        int l = 0, r = 0, count = 0, i = 0;
+        while(r < haystack.length()) {
+            if(haystack.charAt(r) == needle.charAt(i)) {
+                count++;
+                r++;
+                i++;
+            } else {
+                l++;
+                r = l;
+                count = 0;
+                i = 0;
+            }
+            if(count == needle.length()) {
+                return l;
+            }
+        }
+        return -1;
+    }
 }
