@@ -2,6 +2,7 @@ package com.mysolutions.leetcode;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.printf("Hello, World!");
+        Solution s = new Solution();
+        s.isPalindrome(1234567899);
     }
 }
