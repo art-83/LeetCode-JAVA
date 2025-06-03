@@ -129,4 +129,56 @@ public class Solution {
         }
         return -1;
     }
+
+    public int searchInsert(int[] nums, int target) {
+        if(nums.length == 0) {
+            return 0;
+        }
+        if(nums.length == 1) {
+            if(target == nums[0]) {
+                return 0;
+            }
+            if(target > nums[0]) {
+                return 1;
+            }
+            if(target < nums[0]) {
+                return 0;
+            }
+        }
+        if(target < nums[0]) {
+            return 0;
+        }
+        if(target > nums[nums.length - 1]) {
+            return nums.length;
+        }
+        for(int i = 0; i < nums.length - 1; i++) {
+            if(nums[i] == target) {
+                return i;
+            }
+            if(nums[i + 1] == target) {
+                return i + 1;
+            }
+            if(target > nums[i] && target < nums[i + 1]) {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
+
+    //incomplete
+    public int lengthOfLastWord(String s) {
+        int count = 0, aux = 0;
+        for(char c : s.toCharArray()) {
+            if(c == ' ' && count != 0) {
+                aux = count;
+            }
+            if(c != ' ') {
+                count++;
+            } else {
+                count = 0;
+            }
+
+        }
+        return aux;
+    }
 }
