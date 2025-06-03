@@ -165,20 +165,18 @@ public class Solution {
         return -1;
     }
 
-    //incomplete
     public int lengthOfLastWord(String s) {
         int count = 0, aux = 0;
-        for(char c : s.toCharArray()) {
-            if(c == ' ' && count != 0) {
-                aux = count;
-            }
+        for(Character c : s.toCharArray()) {
+            count++;
             if(c != ' ') {
-                count++;
+                aux = count;
             } else {
                 count = 0;
             }
-
         }
         return aux;
     }
+
+
 }
