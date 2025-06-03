@@ -1,11 +1,13 @@
 package com.mysolutions.leetcode;
 
 import java.lang.reflect.Array;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
 public class Solution {
+    // 1. Two Sum
     public int[] twoSum(int[] nums, int target) {
         for(int i = 0; i < nums.length - 1; i++) {
             for(int j = i + 1; j < nums.length; j++) {
@@ -17,6 +19,7 @@ public class Solution {
         return null;
     }
 
+    // 9. Palindrome Number
     public boolean isPalindrome(int x) {
         if(x < 0) {
             return false;
@@ -28,6 +31,7 @@ public class Solution {
         return false;
     }
 
+    // 21. Merge Two Sorted List
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         if(list1 == null && list2 == null) {
             return null;
@@ -47,6 +51,7 @@ public class Solution {
         return sortNode(list1);
     }
 
+    // Used in '21. Merge Two Sorted List'
     public ListNode sortNode(ListNode list) {
         if(list == null) {
             return null;
@@ -73,6 +78,7 @@ public class Solution {
         return list;
     }
 
+    // 20. Valid Parentheses
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<Character>();
         for(Character c : s.toCharArray()) {
@@ -97,6 +103,7 @@ public class Solution {
         return stack.isEmpty();
     }
 
+    // 26. Remove Duplicates from Sorted Array
     public int removeDuplicates(int[] nums) {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         for(int n : nums) {
@@ -110,6 +117,7 @@ public class Solution {
         return arrayList.size();
     }
 
+    // 28. Find the Index of the First Ocurrence in a String
     public int strStr(String haystack, String needle) {
         int l = 0, r = 0, count = 0, i = 0;
         while(r < haystack.length()) {
@@ -130,6 +138,7 @@ public class Solution {
         return -1;
     }
 
+    // 35. Search Insert Position
     public int searchInsert(int[] nums, int target) {
         if(nums.length == 0) {
             return 0;
@@ -165,6 +174,7 @@ public class Solution {
         return -1;
     }
 
+    // 58. Length of Last Word
     public int lengthOfLastWord(String s) {
         int count = 0, aux = 0;
         for(Character c : s.toCharArray()) {
@@ -178,5 +188,54 @@ public class Solution {
         return aux;
     }
 
+    // 27. Remove Element
+    public int removeElement(int[] nums, int val) {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        for(int n : nums) {
+            if(n != val) {
+                arrayList.add(n);
+            }
+        }
+        for(int i = 0; i < arrayList.size(); i++) {
+            nums[i] = arrayList.get(i);
+        }
+        return arrayList.size();
+    }
+
+    /*
+    public int[] plusOne(int[] digits) {
+        String digitsStr = "";
+        for(int n : digits) {
+            digitsStr += n;
+        }
+        BigInteger integer = new BigInteger(digitsStr);
+        BigInteger result = integer.add(new BigInteger("1"));
+
+        digitsStr = result.toString();
+
+        int arrayResult[] = new int[digitsStr.length()];
+
+        for(int i = 0; i < digitsStr.length(); i++) {
+            arrayResult[i] = Character.getNumericValue(digitsStr.charAt(i));
+        }
+        return arrayResult;
+    }
+    */
+
+    // 69. Sqrt(x)
+    public int mySqrt(int x) {
+        if(x == 1 || x == 2) {
+            return 1;
+        }
+        for(long i = 1; i < x; i++) {
+            if(i*i == x) {
+                return (int) i;
+            }
+            if(i*i > x) {
+                return (int) i - 1;
+            }
+        }
+        return 0;
+    }
 
 }
