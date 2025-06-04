@@ -212,11 +212,6 @@ public class Solution {
         return arrayList.get(n - 1) + arrayList.get(n - 2);
     }
 
-    // 83. Remove duplicates from Sorted List (Unfinished)
-    public ListNode deleteDuplicates(ListNode head) {
-        return null;
-    }
-
     // 88. Merge Sorted Array
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int nums2Index = 0;
@@ -227,6 +222,18 @@ public class Solution {
         Arrays.sort(nums1);
     }
 
-    //
-
+    // 125. Valid Palindrome
+    public boolean isPalindrome(String s) {
+        StringBuilder sFormated = new StringBuilder();
+        for(Character c : s.toLowerCase().toCharArray()) {
+            if(Character.isLetterOrDigit(c)) {
+                sFormated.append(c);
+            }
+        }
+        System.out.printf("%s\n%s\n", sFormated.toString(), sFormated.reverse().toString());
+        if(sFormated.toString().equals(sFormated.reverse().toString())) {
+            return true;
+        }
+        return false;
+    }
 }
