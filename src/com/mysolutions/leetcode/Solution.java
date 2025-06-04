@@ -31,57 +31,6 @@ public class Solution {
         return false;
     }
 
-    // 21. Merge Two Sorted List (Redo as soon possible, not good pratices)
-    /*
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if(list1 == null && list2 == null) {
-            return null;
-        }
-        if(list1 != null && list2 == null) {
-            return sortNode(list1);
-        }
-        if(list1 == null && list2 != null) {
-            return sortNode(list2);
-        }
-
-        ListNode list1Aux = list1;
-        while (list1Aux.next != null) {
-            list1Aux = list1Aux.next;
-        }
-        list1Aux.next = list2;
-        return sortNode(list1);
-    }
-    */
-
-    // Used in '21. Merge Two Sorted List'
-    /*
-    public ListNode sortNode(ListNode list) {
-        if(list == null) {
-            return null;
-        }
-        ListNode aux = list;
-        int count = 0;
-        while(aux != null) {
-            aux = aux.next;
-            count++;
-        }
-        aux = list;
-        int array[] = new int[count];
-
-        for(int i = 0; i < count; i++) {
-            array[i] = aux.val;
-            aux = aux.next;
-        }
-        aux = list;
-        Arrays.sort(array);
-        for(int i = 0; i < count; i++) {
-            aux.val = array[i];
-            aux = aux.next;
-        }
-        return list;
-    }
-    */
-
     // 20. Valid Parentheses
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<Character>();
@@ -226,6 +175,7 @@ public class Solution {
     }
     */
 
+    // 66. Plus One (Unfinished)
     public int[] plusOne(int[] digits) {
         return new int[] {0};
     }
@@ -266,5 +216,17 @@ public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         return null;
     }
+
+    // 88. Merge Sorted Array
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int nums2Index = 0;
+        for(int i = m; i < nums1.length; i++) {
+            nums1[i] = nums2[nums2Index];
+            nums2Index++;
+        }
+        Arrays.sort(nums1);
+    }
+
+    //
 
 }
