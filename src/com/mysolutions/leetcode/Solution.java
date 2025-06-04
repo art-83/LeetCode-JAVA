@@ -31,7 +31,8 @@ public class Solution {
         return false;
     }
 
-    // 21. Merge Two Sorted List
+    // 21. Merge Two Sorted List (Redo as soon possible, not good pratices)
+    /*
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         if(list1 == null && list2 == null) {
             return null;
@@ -50,8 +51,10 @@ public class Solution {
         list1Aux.next = list2;
         return sortNode(list1);
     }
+    */
 
     // Used in '21. Merge Two Sorted List'
+    /*
     public ListNode sortNode(ListNode list) {
         if(list == null) {
             return null;
@@ -77,6 +80,7 @@ public class Solution {
         }
         return list;
     }
+    */
 
     // 20. Valid Parentheses
     public boolean isValid(String s) {
@@ -222,6 +226,10 @@ public class Solution {
     }
     */
 
+    public int[] plusOne(int[] digits) {
+        return new int[] {0};
+    }
+
     // 69. Sqrt(x)
     public int mySqrt(int x) {
         if(x == 1 || x == 2) {
@@ -236,6 +244,27 @@ public class Solution {
             }
         }
         return 0;
+    }
+
+    // 70. Climbing Stairs
+    public int climbStairs(int n) {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(2);
+
+        if(n <= 2) {
+            return arrayList.get(n);
+        }
+        for(int i = 0; i < n; i++) {
+            arrayList.add(arrayList.get(arrayList.size() - 1) + arrayList.get(arrayList.size() - 2));
+        }
+        return arrayList.get(n - 1) + arrayList.get(n - 2);
+    }
+
+    // 83. Remove duplicates from Sorted List (Unfinished)
+    public ListNode deleteDuplicates(ListNode head) {
+        return null;
     }
 
 }
