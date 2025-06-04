@@ -4,7 +4,9 @@ import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Stack;
+
 
 public class Solution {
     // 1. Two Sum
@@ -236,4 +238,77 @@ public class Solution {
         }
         return false;
     }
+
+    // 136. Single Number
+    public int singleNumber(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int n : nums) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            } else {
+                int newValue = map.get(n) + 1;
+                map.replace(n, newValue);
+            }
+        }
+        for(int k : map.keySet()) {
+            if(map.get(k) == 1) {
+                return k;
+            }
+        }
+        return -1;
+    }
+
+    // 169. Majority Element
+    public int majorityElement(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int n : nums) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            } else {
+                int newValue = map.get(n) + 1;
+                map.replace(n, newValue);
+            }
+        }
+        int maxKey = nums[0];
+        for(int k : map.keySet()) {
+            if(map.get(k) > map.get(maxKey)) {
+                maxKey = k;
+            }
+        }
+        return maxKey;
+    }
+
+    // 202. Happy Number
+    public boolean isHappy(int n) {
+        String nStr = String.valueOf(n);
+        ArrayList<Integer> pastResult = new ArrayList<Integer>();
+
+        while (true) {
+            int result = 0;
+            int count = 0;
+            for(Character c : nStr.toCharArray()) {
+                result += Character.getNumericValue(c) * Character.getNumericValue(c);
+            }
+            System.out.printf("%d\n", result);
+            pastResult.add(result);
+            nStr = String.valueOf(result);
+            for(int i : pastResult) {
+                if(result == i) {
+                    count++;
+                }
+            }
+            if(count > 1) {
+                return false;
+            }
+            if(result == 1) {
+                return true;
+            }
+        }
+    }
+
+    // 205. Isomorphic Strings
+    public boolean isIsomorphic(String s, String t) {
+
+    }
+
 }
