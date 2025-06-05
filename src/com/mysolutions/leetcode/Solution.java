@@ -425,7 +425,119 @@ public class Solution {
 
     // 345. Reverse Vowels of a String
     public String reverseVowels(String s) {
-
+        char c[] = s.toCharArray();
+        int l = 0, r = s.length() - 1;
+        int i = 0;
+        while (l < r) {
+            while ((c[l] != 'A' && c[l] != 'a' && c[l] != 'E' && c[l] != 'e' && c[l] != 'I' && c[l] != 'i' && c[l] != 'O' && c[l] != 'o' && c[l] != 'U' && c[l] != 'u')
+            && l < r) {
+                l++;
+            }
+            while ((c[r] != 'A' && c[r] != 'a' && c[r] != 'E' && c[r] != 'e' && c[r] != 'I' && c[r] != 'i' && c[r] != 'O' && c[r] != 'o' && c[r] != 'U' && c[r] != 'u')
+            && l < r) {
+                r--;
+            }
+            char aux = c[l];
+            c[l] = c[r];
+            c[r] = aux;
+            l++;
+            r--;
+        }
+        StringBuilder string = new StringBuilder();
+        for(Character ch : c) {
+            string.append(ch);
+        }
+        return string.toString();
     }
 
+    // 349. Intersection of Two Arrays
+    public int[] intersection(int[] nums1, int[] nums2) {
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < nums1.length; i++) {
+            for(int j = 0; j < nums2.length; j++) {
+                if(nums1[i] == nums2[j] && !list.contains(nums1[i])) {
+                    list.add(nums1[i]);
+                }
+            }
+        }
+        int array[] = new int[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
+        }
+        return array;
+    }
+
+    // 367. Valid Perfect Square (Bad Run Time)
+    public boolean isPerfectSquareBadRuntime(int num) {
+        for(int i = 1; i < num; i++) {
+            if(i * i == num) {
+                return true;
+            }
+            if(i * i > num) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    // 367. Valid Perfect Square
+    public boolean isPerfectSquare(int num) {
+        double sqrt = Math.sqrt(num);
+        if(Math.floor(sqrt) * Math.floor(sqrt) == num) {
+            return true;
+        }
+        return false;
+    }
+
+    // 387. First Unique Character in String
+    public int firstUniqChar(String s) {
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for(Character c : s.toCharArray()) {
+            if(!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+        for(int i = 0; i < s.length(); i++) {
+            if(map.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // 389. Find the Diference
+    public char findTheDifference(String s, String t) {
+        if(s.length() == 0) {
+            return t.charAt(0);
+        }
+        char sChar[] = s.toCharArray();
+        char tChar[] = t.toCharArray();
+
+        Arrays.sort(sChar);
+        Arrays.sort(tChar);
+
+        for(int i = 0; i < s.length(); i++) {
+            if(sChar[i] != tChar[i]) {
+                return tChar[i];
+            }
+        }
+
+        return tChar[s.length()];
+    }
+
+    // 507. Perfect Number
+    public boolean checkPerfectNumber(int num) {
+        int sum = 0;
+        for(int i = 1; i < num; i++) {
+            if(num % i == 0) {
+                sum += i;
+            }
+        }
+        if(sum == num) {
+            return true;
+        }
+        return false;
+    }
 }
