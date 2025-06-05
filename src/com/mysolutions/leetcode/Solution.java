@@ -1,11 +1,7 @@
 package com.mysolutions.leetcode;
 
-import java.lang.reflect.Array;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Stack;
+import java.lang.classfile.constantpool.StringEntry;
+import java.util.*;
 
 
 public class Solution {
@@ -306,8 +302,129 @@ public class Solution {
         }
     }
 
-    // 205. Isomorphic Strings
-    public boolean isIsomorphic(String s, String t) {
+    // 13. Roman To Integer
+    public int romanToInt(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+
+        boolean sum;
+
+        int result = 0;
+        int prev = 0;
+
+        for(int i = s.length() - 1; i >= 0; i--) {
+            Character c = s.charAt(i);
+
+            int current = map.get(c);
+
+            if(current < prev) {
+                result -= current;
+            } else {
+                result += current;
+            }
+            prev = current;
+        }
+        return result;
+    }
+
+    // 217. Contains Duplicate
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> map = new HashSet<Integer>();
+        for(int n : nums) {
+            if(map.contains(n)) {
+                return true;
+            }
+            map.add(n);
+        }
+        return false;
+    }
+
+    // 258. Add Digits
+    public int addDigits(int num) {
+        int result = 1;
+        String numStr = String.valueOf(num);
+        while (result != 0) {
+            result = 0;
+            for(Character c : numStr.toCharArray()) {
+                result += Character.getNumericValue(c);
+            }
+            if(result < 10) {
+                return result;
+            }
+            numStr = String.valueOf(result);
+        }
+        return 0;
+    }
+
+    // 268. Missing Number
+    public int missingNumber(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        int max = Integer.MIN_VALUE;
+        for(int n : nums) {
+            if(n > max) {
+                max = n;
+            }
+            set.add(n);
+        }
+        if(!set.contains(0)) {
+            return 0;
+        }
+        for(int i = 1; i < max; i++) {
+            if(!set.contains(i)) {
+                return i;
+            }
+        }
+        return max + 1;
+    }
+
+    // 283. Move Zeroes
+    public void moveZeroes(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        for(int n : nums) {
+            if(n != 0) {
+                list.add(n);
+            }
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if(i < list.size()) {
+                nums[i] = list.get(i);
+            } else {
+                nums[i] = 0;
+            }
+        }
+        /*
+        for(int i = 0; i < nums.length - 1; i++) {
+            for(int j = i + 1; j < nums.length; j++) {
+                if(nums[i] == 0) {
+                    int aux = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = aux;
+                }
+            }
+        }
+         */
+    }
+
+    // 344. Reverse String
+    public void reverseString(char[] s) {
+        int l = 0, r = s.length - 1;
+        while (l < r) {
+            char aux = s[l];
+            s[l] = s[r];
+            s[r] = aux;
+            l++;
+            r--;
+        }
+    }
+
+    // 345. Reverse Vowels of a String
+    public String reverseVowels(String s) {
 
     }
 
