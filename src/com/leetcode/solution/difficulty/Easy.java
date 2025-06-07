@@ -1,10 +1,9 @@
-package com.mysolutions.leetcode;
+package com.leetcode.solution.difficulty;
 
-import java.lang.classfile.constantpool.StringEntry;
+import java.lang.reflect.Array;
 import java.util.*;
 
-
-public class Solution {
+public class Easy {
     // 1. Two Sum
     public int[] twoSum(int[] nums, int target) {
         for(int i = 0; i < nums.length - 1; i++) {
@@ -539,5 +538,174 @@ public class Solution {
             return true;
         }
         return false;
+    }
+
+    // 412. Fizz Buzz
+    public List<String> fizzBuzz(int n) {
+        List<String> list = new ArrayList<>();
+        for(int i = 1; i <= n; i++) {
+            if(i % 3 == 0 && i % 5 == 0) {
+                list.add("FizzBuzz");
+            }
+            else if(i % 3 == 0) {
+                list.add("Fizz");
+            }
+            else if(i % 5 == 0) {
+                list.add("Buzz");
+            } else {
+                list.add(String.valueOf(i));
+            }
+        }
+        return list;
+    }
+
+    // 724. Find Pivot Index
+    public int pivotIndex(int[] nums) {
+        for(int i = 0; i < nums.length; i++) {
+            int l = 0, r = nums.length - 1;
+            int lSum = 0, rSum = 0;
+            while (l < i) {
+                lSum += nums[l];
+                l++;
+            }
+            while (r > i) {
+                rSum += nums[l];
+                r--;
+            }
+            if(lSum == rSum) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // 3110. Score of a String
+    public int scoreOfString(String s) {
+        int sum = 0;
+        char c[] = s.toCharArray();
+        for(int i = 0; i < s.length() - 1; i ++) {
+            int result = 0;
+            result += Math.abs(c[i] - c[i + 1]);
+            sum += result;
+        }
+        return sum;
+    }
+
+    // 2884. Divisible and Non-divisible Sums Difference
+    public int differenceOfSums(int n, int m) {
+        int nums1 = 0, nums2 = 0;
+        for(int i = 1; i <= n; i++) {
+            if(i % m == 0) {
+                nums2 += i;
+            } else {
+                nums1 += i;
+            }
+        }
+        return nums1 - nums2;
+    }
+
+    // 2942. Find Words Containing Character
+    public List<Integer> findWordsContaining(String[] words, char x) {
+        List<Integer> list = new ArrayList<>();
+        int i = 0;
+        for(String s : words) {
+            if(s.contains(String.valueOf(x))) {
+                list.add(i);
+            }
+            i++;
+        }
+        return list;
+    }
+
+    // 1929. Concatenation of Array
+    public int[] getConcatenation(int[] nums) {
+        int array[] = new int[nums.length * 2];
+        for(int i = 0; i < nums.length; i++) {
+            array[i] = nums[i];
+            array[i + nums.length] = nums[i];
+        }
+        return array;
+    }
+
+    // 2469. Convert Temperature
+    public double[] convertTemperature(double celsius) {
+        double k = celsius + (double) 273.15;
+        double f = celsius * (double) 1.8 + (double) 32.00;
+        return new double[] {k, f};
+    }
+
+    // 1108. Defanging an IP Adress
+    public String defangIPaddr(String address) {
+        String dot = "[.]";
+        StringBuilder str = new StringBuilder();
+
+        for(Character c : address.toCharArray()) {
+            if(c != '.') {
+                str.append(c);
+            } else {
+                str.append(dot);
+            }
+        }
+        return str.toString();
+    }
+
+    // 1512. Number of Good Pairs
+    public int numIdenticalPairs(int[] nums) {
+        int count = 0;
+        for(int i = 0; i < nums.length - 1; i++) {
+            for(int j = i + 1; j < nums.length; j++) {
+                if(nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    // 3467. Transform Array by Parity
+    public int[] transformArray(int[] nums) {
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] % 2 == 0) {
+                nums[i] = 0;
+            } else {
+                nums[i] = 1;
+            }
+        }
+        Arrays.sort(nums);
+        return nums;
+    }
+
+    // 771. Jewels and Stones
+    public int numJewelsInStones(String jewels, String stones) {
+        int count = 0;
+        for(Character c : stones.toCharArray()) {
+            for(Character v : jewels.toCharArray()) {
+                if(c == v) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    // 3190. Find Minimum Operations to Make All Elements Divisible by Three
+    public int[] getSneakyNumbers(int[] nums) {
+         Map<Integer, Integer> map = new LinkedHashMap<>();
+         for(int n : nums) {
+             if(!map.containsKey(n)) {
+                 map.put(n, 1);
+             } else {
+                 map.put(n, map.get(n) + 1);
+             }
+         }
+         int array[] = new int[2];
+         int i = 0;
+         for(int k : map.keySet()) {
+            if(map.get(k) == 2) {
+                array[i] = k;
+                i++;
+            }
+         }
+         return array;
     }
 }
