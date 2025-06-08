@@ -708,4 +708,64 @@ public class Easy {
          }
          return array;
     }
+
+    // 1470. Suffle the array (Bad Run Time)
+    public int[] shuffleBadRunTime(int[] nums, int n) {
+        Queue<Integer> xQueue = new LinkedList<>();
+        Queue<Integer> yQueue = new LinkedList<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            if(i < nums.length/2) {
+                xQueue.add(nums[i]);
+            } else {
+                yQueue.add(nums[i]);
+            }
+        }
+
+        for(int i = 0; i < nums.length; i++) {
+            if(i % 2 == 0) {
+                nums[i] = xQueue.remove();
+            } else {
+                nums[i] = yQueue.remove();
+            }
+        }
+
+        return nums;
+    }
+
+    // DO LATER!!
+    public int[] shuffle(int[] nums, int n) {
+        for (int i = 0; i < n * 2; i++) {
+            nums[i] = nums[i * n];
+            nums[i] = nums[(i + i) * n];
+        }
+        return nums;
+    }
+
+    // 1672. Richest Customer Wealth
+    public int maximumWealth(int[][] accounts) {
+        int rows = accounts.length;
+        int col =  accounts[0].length;
+
+        int max = Integer.MIN_VALUE;
+
+        for(int i = 0; i < rows; i++) {
+            int result = 0;
+            for(int j = 0; j < col; j++) {
+                result += accounts[i][j];
+            }
+            if(result > max) {
+                max = result;
+            }
+        }
+        return max;
+    }
+
+    // 2235. Add Two Integers
+    public int sum(int num1, int num2) {
+        return num1 + num2;
+    }
+
+
+
 }
