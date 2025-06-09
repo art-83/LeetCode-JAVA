@@ -766,6 +766,138 @@ public class Easy {
         return num1 + num2;
     }
 
+    public int longestPalindrome(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int count = 0;
 
+        for(Character c : s.toCharArray()) {
+            if(!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
 
+        for(Character k : map.keySet()) {
+            if(map.get(k) % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // 796. Rotate String
+    public boolean rotateString(String s, String goal) {
+        Queue<Character> queue = new LinkedList<>();
+        StringBuilder str = new StringBuilder();
+        for(Character c : s.toCharArray()) {
+            queue.add(c);
+        }
+        while (true) {
+            char aux = queue.remove();
+            queue.add(aux);
+            for(Character c : queue) {
+                str.append(c);
+            }
+            if(str.toString().equals(goal)) {
+                return true;
+            }
+            if(str.toString().equals(s)) {
+                return false;
+            }
+            str.setLength(0);
+        }
+    }
+
+    // 392. Is Subsequence
+    public boolean isSubsequence(String s, String t) {
+        if(s.length() == 0) {
+            return true;
+        }
+        if(t.length() == 0) {
+            return false;
+        }
+        List<Character> list = new LinkedList<>();
+        for(Character c : s.toCharArray()) {
+            list.add(c);
+        }
+        int listIndex = 0;
+        int count = 0;
+        for(Character c : t.toCharArray()) {
+            if(c == list.get(listIndex)) {
+                listIndex++;
+                count++;
+            }
+            if(listIndex > list.size()) {
+                break;
+            }
+        }
+        if(count == s.length()) {
+            return true;
+        }
+        return false;
+    }
+
+    // 509. Fibonnaci Number
+    public int fibBadRunTime(int n) {
+        if(n == 0) {
+            return 0;
+        }
+        if(n == 1 || n == 2) {
+            return 1;
+        }
+        return fibBadRunTime(n - 1) + fibBadRunTime(n - 2);
+    }
+
+    public int fib(int n) {
+        List<Integer> list = new LinkedList<>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+
+        if(n == 0) {
+            return list.get(0);
+        }
+        if(n == 1 || n == 2) {
+            return list.get(1);
+        }
+
+        for(int i = 3; i < n; i++) {
+            list.add(list.get(i - 1) + list.get(i - 2));
+        }
+        return list.get(n - 1);
+    }
+
+    // 844. Backspace String Compare
+    public boolean backspaceCompare(String s, String t) {
+        Stack<Character> sStack = new Stack<>();
+        Stack<Character> tStack = new Stack<>();
+        for(Character c : s.toCharArray()) {
+            if(c == '#') {
+                if(!sStack.isEmpty()) {
+                    sStack.pop();
+                }
+            } else {
+                sStack.add(c);
+            }
+        }
+        for(Character c : t.toCharArray()) {
+            if(c == '#') {
+                if(!tStack.isEmpty()) {
+                    tStack.pop();
+                }
+            } else {
+                tStack.add(c);
+            }
+        }
+        if(sStack.size() == tStack.size()) {
+            for(int i = 0; i < sStack.size(); i++) {
+                if(sStack.get(i) != tStack.get(i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
 }
