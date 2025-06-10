@@ -3,6 +3,7 @@ import com.leetcode.solution.Solution;
 public class Main {
     public static void main(String[] args) {
         Solution s = new Solution();
-        System.out.println(s.easy.fib(4));
+
+        System.out.println(s.easy.wordPattern("abba","dog dog dog dog"));
     }
 }

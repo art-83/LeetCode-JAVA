@@ -839,14 +839,14 @@ public class Easy {
     }
 
     // 509. Fibonnaci Number
-    public int fibBadRunTime(int n) {
+    public int fibBadRuntime(int n) {
         if(n == 0) {
             return 0;
         }
         if(n == 1 || n == 2) {
             return 1;
         }
-        return fibBadRunTime(n - 1) + fibBadRunTime(n - 2);
+        return fibBadRuntime(n - 1) + fibBadRuntime(n - 2);
     }
 
     public int fib(int n) {
@@ -896,6 +896,50 @@ public class Easy {
                     return false;
                 }
             }
+            return true;
+        }
+        return false;
+    }
+
+    // 290. Word Pattern
+    public boolean wordPattern(String pattern, String s) {
+        Map<Character, String> map = new LinkedHashMap<>();
+        List<String> list = new LinkedList<>();
+        StringBuilder strBuilder = new StringBuilder();
+        s += " ";
+
+        for(Character c : s.toCharArray()) {
+            if(c != ' ') {
+                strBuilder.append(c);
+            } else {
+                if(!list.contains(strBuilder.toString())) {
+                    list.add(strBuilder.toString());
+                }
+                strBuilder.setLength(0);
+            }
+        }
+
+        int i = 0;
+
+        for(Character c : pattern.toCharArray()) {
+            if(!map.containsKey(c)) {
+                if(i < list.size()) {
+                    map.put(c, list.get(i));
+                    i++;
+                }
+            }
+        }
+
+        System.out.println(map.toString());
+        System.out.println(list.toString());
+
+        for(Character c : pattern.toCharArray()) {
+            strBuilder.append(map.get(c) + " ");
+        }
+
+        System.out.println(strBuilder.toString());
+
+        if(strBuilder.toString().equals(s)) {
             return true;
         }
         return false;
