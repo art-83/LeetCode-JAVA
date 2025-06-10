@@ -2,6 +2,7 @@ package com.leetcode.solution.difficulty;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.Iterator;
 
 public class Easy {
     // 1. Two Sum
@@ -944,4 +945,5 @@ public class Easy {
         }
         return false;
     }
+
 }
