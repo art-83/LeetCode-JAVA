@@ -985,7 +985,6 @@ public class Easy {
     public String mergeAlternately(String word1, String word2) {
         StringBuilder str = new StringBuilder();
         int index = 0;
-
         while (index < word1.length() && index < word2.length()) {
             str.append(word1.charAt(index));
             str.append(word2.charAt(index));
@@ -1021,5 +1020,31 @@ public class Easy {
             }
         }
         return str.toString();
+    }
+
+    // 434. Number of Segments in a String
+    public int countSegments(String s) {
+        s = s.toLowerCase();
+        s += " ";
+
+        StringBuilder str = new StringBuilder();
+        List<String> list = new LinkedList<>();
+
+        for(Character c : s.toCharArray()) {
+            if(c != ' ') {
+                str.append(c);
+            } else {
+                list.add(str.toString());
+                str.setLength(0);
+            }
+        }
+
+        for(int i = 0; i < list.size(); i++) {
+            if(list.get(i).equals(" ")  || list.get(i).equals("")) {
+                list.remove(i);
+            }
+        }
+        System.out.println(list.toString());
+        return list.size();
     }
 }
