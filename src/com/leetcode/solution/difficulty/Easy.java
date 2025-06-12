@@ -153,6 +153,7 @@ public class Easy {
         return arrayList.size();
     }
 
+    // 66. Plus One (Unfinished)
     /*
     public int[] plusOne(int[] digits) {
         String digitsStr = "";
@@ -172,8 +173,6 @@ public class Easy {
         return arrayResult;
     }
     */
-
-    // 66. Plus One (Unfinished)
     public int[] plusOne(int[] digits) {
         return new int[] {0};
     }
@@ -946,4 +945,81 @@ public class Easy {
         return false;
     }
 
+    // 231. Power of Two
+    public boolean isPowerOfTwo(int n) {
+         for(int i = 0; i < 31; i++) {
+             if(Math.pow(2,i) == n) {
+                 return true;
+             }
+         }
+         return false;
+    }
+
+    // 326. Power of Three
+    public boolean isPowerOfThree(int n) {
+        for(int i = 0; i < 31; i++) {
+            if(Math.pow(3,i) == n) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 3024. Type of Triangle
+    public String triangleType(int[] nums) {
+        if(nums[0] + nums[1] <= nums[2] ||
+           nums[1] + nums[2] <= nums[0] ||
+           nums[2] + nums[0] <= nums[1]) {
+            return "none";
+        }
+        if(nums[0] == nums[1] && nums[1] == nums[2]) {
+            return "equilateral";
+        }
+        if(nums[0] != nums[1] && nums[1] != nums[2]) {
+            return "scalene";
+        }
+        return "isoceles";
+    }
+
+    // 1768. Merge Strings Alternately
+    public String mergeAlternately(String word1, String word2) {
+        StringBuilder str = new StringBuilder();
+        int index = 0;
+
+        while (index < word1.length() && index < word2.length()) {
+            str.append(word1.charAt(index));
+            str.append(word2.charAt(index));
+            index++;
+        }
+        if(word1.length() > word2.length()) {
+            for (int i = index; i < word1.length(); i++) {
+                str.append(word1.charAt(i));
+            }
+        } else {
+            for (int i = index; i < word2.length(); i++) {
+                str.append(word2.charAt(i));
+            }
+        }
+        return str.toString();
+    }
+    public String mergeAlternatelyBadRunTime(String word1, String word2) {
+        Queue<Character> queueWord1 = new LinkedList<>();
+        Queue<Character> queueWord2 = new LinkedList<>();
+        for(Character c : word1.toCharArray()) {
+            queueWord1.add(c);
+        }
+        for(Character c : word2.toCharArray()) {
+            queueWord2.add(c);
+        }
+        StringBuilder str = new StringBuilder();
+        while (!queueWord1.isEmpty() || !queueWord2.isEmpty()) {
+            if(!queueWord1.isEmpty()) {
+                str.append(queueWord1.remove());
+            }
+            if(!queueWord2.isEmpty()) {
+                str.append(queueWord2.remove());
+            }
+        }
+        return str.toString();
+    }
 }
