@@ -1047,4 +1047,48 @@ public class Easy {
         System.out.println(list.toString());
         return list.size();
     }
+
+    // 2085. Count Common Words With One Occurrence
+    public int countWords(String[] words1, String[] words2) {
+        Map<String, Integer> mapWords1 = new HashMap<>();
+        Map<String, Integer> mapWords2 = new HashMap<>();
+
+        for (String s : words1) {
+            if(!mapWords1.containsKey(s)) {
+                mapWords1.put(s, 1);
+            } else {
+                mapWords1.put(s, mapWords1.get(s) + 1);
+            }
+        }
+
+        for (String s : words2) {
+            if(!mapWords2.containsKey(s)) {
+                mapWords2.put(s, 1);
+            } else {
+                mapWords2.put(s, mapWords2.get(s) + 1);
+            }
+        }
+
+        int count = 0;
+
+        for(String s : mapWords1.keySet()) {
+            if(mapWords2.containsKey(s)) {
+                if(mapWords1.get(s) == 1 && mapWords2.get(s) == 1) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    // 3285. Find Indices of Stable Mountains
+    public List<Integer> stableMountains(int[] height, int threshold) {
+        List<Integer> list = new ArrayList<>();
+        for(int i = 1; i < height.length; i++) {
+            if(height[i - 1] > threshold) {
+                list.add(i);
+            }
+        }
+        return list;
+    }
 }
