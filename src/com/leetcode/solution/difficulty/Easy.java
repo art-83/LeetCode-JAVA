@@ -1091,4 +1091,69 @@ public class Easy {
         }
         return list;
     }
+
+    // 1876. Substrings of Size Three with Distinct Characters
+    public int countGoodSubstrings(String s) {
+        StringBuilder str = new StringBuilder();
+        int count = 0, l = 0, r = 2;
+
+        while (r < s.length()) {
+            for (int i = l; i <= r; i++) {
+                str.append(s.charAt(i));
+            }
+            System.out.println(str.toString());
+            if(goodSubstring(str.toString())) {
+                count++;
+            }
+            str.setLength(0);
+            l++;
+            r++;
+        }
+        return count;
+    }
+    public static boolean goodSubstring(String s) {
+        Set<Character> map = new HashSet<>();
+        for(Character c : s.toCharArray()) {
+            if(!map.contains(c)) {
+                map.add(c);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // 819. Most Common Word
+    public String mostCommonWord(String paragraph, String[] banned) {
+        paragraph = paragraph.toLowerCase();
+        String words[] = paragraph.split("[ !?',;.]");
+        Map<String, Integer> map = new HashMap<>();
+        for(String s : words) {
+            boolean isBanned = false;
+            if(!s.isEmpty()) {
+                for(String b : banned) {
+                    if(s.equals(b)) {
+                        isBanned = true;
+                    }
+                }
+                if(isBanned == false) {
+                    if(!map.containsKey(s)) {
+                        map.put(s, 1);
+                    } else {
+                        map.put(s, map.get(s) + 1);
+                    }
+                }
+            }
+        }
+        String maxKey = null;
+        int maxValue = 0;
+        for(String s : map.keySet()) {
+            if(map.get(s) > maxValue) {
+                maxKey = s;
+                maxValue = map.get(s);
+            }
+        }
+        System.out.println(map.toString());
+        return maxKey;
+    }
 }
