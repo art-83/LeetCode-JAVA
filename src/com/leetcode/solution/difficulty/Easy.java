@@ -1156,4 +1156,33 @@ public class Easy {
         System.out.println(map.toString());
         return maxKey;
     }
+
+    // 824. Goat Latin
+    public String toGoatLatin(String sentence) {
+        String words[] = sentence.split(" ");
+        StringBuilder str = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        int aCount = 1;
+
+        for(String s : words) {
+            if(String.valueOf(s.charAt(0)).equalsIgnoreCase("a") || String.valueOf(s.charAt(0)).equalsIgnoreCase("e") ||
+            String.valueOf(s.charAt(0)).equalsIgnoreCase("i") || String.valueOf(s.charAt(0)).equalsIgnoreCase("o") ||
+                String.valueOf(s.charAt(0)).equalsIgnoreCase("u")) {
+                str.append(s);
+                str.append("ma");
+            } else {
+                str.append(s.substring(1,s.length()));
+                str.append(s.charAt(0));
+                str.append("ma");
+            }
+            for(int i = 0; i < aCount; i++) {
+                str.append("a");
+            }
+            result.append(str.toString() + " ");
+            str.setLength(0);
+            aCount++;
+        }
+        result.deleteCharAt(result.length() - 1);
+        return result.toString();
+    }
 }
