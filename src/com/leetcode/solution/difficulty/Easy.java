@@ -1185,4 +1185,73 @@ public class Easy {
         result.deleteCharAt(result.length() - 1);
         return result.toString();
     }
+
+    // 463. Island Perimeter
+    public int islandPerimeter(int[][] grid) {
+        int edges = 0, rows = grid.length, col = grid[0].length;
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < col; j++) {
+                if(grid[i][j] == 1) {
+                    edges += 4;
+                }
+            }
+        }
+        edges -= verifyUpEdge(grid);
+        edges -= verifyDownEdge(grid);
+        edges -= verifyLeftEdge(grid);
+        edges -= verifyRightEdge(grid);
+        return edges;
+    }
+
+    public static int verifyUpEdge(int[][] grid) {
+        int edges = 0, rows = grid.length, col = grid[0].length;
+        for(int i = 1; i < rows; i++) {
+            for(int j = 0; j < col; j++) {
+                if(grid[i - 1][j] == 1 && grid[i][j] == 0) {
+                    System.out.printf("%d - %d: up--\n", i, j);
+                    edges++;
+                }
+            }
+        }
+        return edges;
+    }
+
+    public static int verifyDownEdge(int[][] grid) {
+        int edges = 0, rows = grid.length, col = grid[0].length;
+        for(int i = 0; i < rows - 1; i++) {
+            for(int j = 0; j < col; j++) {
+                if(grid[i + 1][j] == 1 && grid[i][j] == 0) {
+                    System.out.printf("%d - %d: down--\n", i, j);
+                    edges++;
+                }
+            }
+        }
+        return edges;
+    }
+
+    public static int verifyLeftEdge(int[][] grid) {
+        int edges = 0, rows = grid.length, col = grid[0].length;
+        for(int i = 0; i < rows; i++) {
+            for(int j = 1; j < col; j++) {
+                if(grid[i][j - 1] == 1 && grid[i][j] == 0) {
+                    System.out.println(j + "left--");
+                    edges++;
+                }
+            }
+        }
+        return edges;
+    }
+
+    public static int verifyRightEdge(int[][] grid) {
+        int edges = 0, rows = grid.length, col = grid[0].length;
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < col - 1; j++) {
+                if(grid[i][j + 1] == 1 && grid[i][j] == 0) {
+                    System.out.println(j + "right--");
+                    edges++;
+                }
+            }
+        }
+        return edges;
+    }
 }

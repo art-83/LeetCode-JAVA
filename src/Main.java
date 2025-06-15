@@ -4,6 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Solution s = new Solution();
 
-        System.out.println(s.easy.toGoatLatin("I speak Goat Latin"));
+        System.out.println(s.easy.islandPerimeter(new int[][]);
     }
 }
