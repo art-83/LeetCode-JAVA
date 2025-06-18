@@ -51,4 +51,28 @@ public class Medium {
         }
         return null;
     }
+
+    // 79. Word Search
+    public boolean exist(char[][] board, String word) {
+        StringBuilder str = new StringBuilder();
+        int row = board.length - 1;
+        int col = board[0].length - 1;
+
+        int wordIndex = word.length() - 1;
+
+        for(int i = row; i >= 0; i--) {
+            for(int j = col; j >= 0; j--) {
+                if(board[i][j] == word.charAt(wordIndex)) {
+                    str.append(board[i][j]);
+                    wordIndex--;
+                }
+                if(str.toString().equals(word)) {
+                    return true;
+                }
+            }
+        }
+        System.out.printf("%d\n", wordIndex);
+        System.out.printf("%s\n",str.toString());
+        return false;
+    }
 }

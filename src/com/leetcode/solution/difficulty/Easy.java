@@ -733,15 +733,6 @@ public class Easy {
         return nums;
     }
 
-    // DO LATER!!
-    public int[] shuffle(int[] nums, int n) {
-        for (int i = 0; i < n * 2; i++) {
-            nums[i] = nums[i * n];
-            nums[i] = nums[(i + i) * n];
-        }
-        return nums;
-    }
-
     // 1672. Richest Customer Wealth
     public int maximumWealth(int[][] accounts) {
         int rows = accounts.length;
@@ -1253,5 +1244,49 @@ public class Easy {
             }
         }
         return edges;
+    }
+
+    // 1748. Sum of Unique Elements
+    public int sumOfUnique(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int n : nums) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            } else {
+                map.put(n, map.get(n) + 1);
+            }
+        }
+        int sum = 0;
+        for(int n : map.keySet()) {
+            if(map.get(n) == 1) {
+                sum += n;
+            }
+        }
+        return sum;
+    }
+
+    // 1207. Unique Number of Occurrences
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        Set<Integer> set = new HashSet<>();
+        for(int n : arr) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            } else {
+                map.put(n, map.get(n) + 1);
+            }
+        }
+        for(int n : map.keySet()) {
+            if(set.contains(map.get(n))) {
+                return false;
+            }
+            set.add(map.get(n));
+        }
+        return true;
+    }
+
+    // 1592. Rearrange Spaces Between Words
+    public String reorderSpaces(String text) {
+
     }
 }
