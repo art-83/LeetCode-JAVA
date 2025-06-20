@@ -1285,8 +1285,17 @@ public class Easy {
         return true;
     }
 
-    // 1592. Rearrange Spaces Between Words
-    public String reorderSpaces(String text) {
-
+    // 1796. Second Largest Digit in a String
+    public int secondHighest(String s) {
+        TreeSet<Integer> set = new TreeSet<>();
+        for(Character c : s.toCharArray()) {
+            if(Character.isDigit(c)) {
+                set.add(Character.getNumericValue(c));
+            }
+        }
+        if(set.size() <= 1) {
+            return -1;
+        }
+        return set.lower(set.getLast());
     }
 }
