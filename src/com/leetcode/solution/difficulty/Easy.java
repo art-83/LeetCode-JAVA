@@ -1298,4 +1298,45 @@ public class Easy {
         }
         return set.lower(set.getLast());
     }
+
+    // 1507. Reformat Date
+    public String reformatDate(String date) {
+        String d[] = date.split(" ");
+        StringBuilder str = new StringBuilder();
+        Map<String, String> month = new HashMap<>();
+
+        if(d[0].length() == 1) {
+            str.append(0);
+        }
+
+        for(Character c : d[0].toCharArray()) {
+            if(Character.isDigit(c)) {
+                str.append(c);
+            }
+        }
+
+        month.put("Jan", "1");
+        month.put("Feb", "2");
+        month.put("Mar", "3");
+        month.put("Apr", "4");
+        month.put("May", "5");
+        month.put("Jun", "6");
+        month.put("Jul", "7");
+        month.put("Aug", "8");
+        month.put("Sep", "9");
+        month.put("Oct", "10");
+        month.put("Nov", "11");
+        month.put("Dec", "12");
+
+        d[0] = str.toString();
+        d[1] = month.get(d[1]);
+
+        str.setLength(0);
+
+        for(int i = 2; i >= 0; i--) {
+            str.append(d[i] + '-');
+        }
+
+        return str.toString().substring(0, str.length() - 1);
+    }
 }
