@@ -1304,17 +1304,14 @@ public class Easy {
         String d[] = date.split(" ");
         StringBuilder str = new StringBuilder();
         Map<String, String> month = new HashMap<>();
-
         if(d[0].length() == 1) {
             str.append(0);
         }
-
         for(Character c : d[0].toCharArray()) {
             if(Character.isDigit(c)) {
                 str.append(c);
             }
         }
-
         month.put("Jan", "1");
         month.put("Feb", "2");
         month.put("Mar", "3");
@@ -1327,16 +1324,69 @@ public class Easy {
         month.put("Oct", "10");
         month.put("Nov", "11");
         month.put("Dec", "12");
-
         d[0] = str.toString();
         d[1] = month.get(d[1]);
-
         str.setLength(0);
-
         for(int i = 2; i >= 0; i--) {
             str.append(d[i] + '-');
         }
-
         return str.toString().substring(0, str.length() - 1);
+    }
+
+    // 1598. Crawler Log Folder
+    public int minOperations(String[] logs) {
+        Stack<String> stack = new Stack<>();
+        for(String s : logs) {
+            System.out.printf("%s\n", stack.toString());
+            if(!s.equals("./")) {
+                if(s.equals("../") && !stack.isEmpty()) {
+                    stack.pop();
+                }
+                if(!s.equals("../")){
+                    stack.add(s);
+                }
+            }
+        }
+        return stack.size();
+    }
+
+    // 2824. Count Pairs Whose Sum is Less than Target
+    public int countPairs(List<Integer> nums, int target) {
+        int count = 0, size = nums.size();
+        for(int i = 0; i < size - 1; i++) {
+            for(int j = i + 1; j < size; j++) {
+                if(nums.get(i) + nums.get(j) < target) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    // 1021. Generate Tag for Video Caption
+    public String generateTag(String caption) {
+        String words[] = caption.split(" ");
+        List<String> list = new ArrayList<>();
+        StringBuilder str = new StringBuilder("#");
+        for(String s : words) {
+            if(!s.isEmpty()) {
+                list.add(s.toLowerCase());
+            }
+        }
+        StringBuilder w = new StringBuilder();
+        for(int i = 0; i < list.size(); i++) {
+            if(i == 0) {
+                str.append(list.get(i));
+            } else {
+                w.append(list.get(i));
+                w.setCharAt(0, Character.toUpperCase(w.charAt(0)));
+                str.append(w);
+                w.setLength(0);
+            }
+        }
+        if(str.length() > 100) {
+            str.setLength(100);
+        }
+        return str.toString();
     }
 }
