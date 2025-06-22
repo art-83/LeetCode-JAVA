@@ -1389,4 +1389,36 @@ public class Easy {
         }
         return str.toString();
     }
+
+    // 3591. Check if Any Element Has Prime Frequency
+    public boolean checkPrimeFrequency(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int n : nums) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            } else {
+                map.put(n, map.get(n) + 1);
+            }
+        }
+
+        for(int n : map.keySet()) {
+            if(isPrime(map.get(n))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPrime(int n) {
+        int count = 0;
+        for(int i = 1; i <= n; i++) {
+            if(n % i == 0) {
+                count ++;
+            }
+        }
+        if(count == 2) {
+            return true;
+        }
+        return false;
+    }
 }
