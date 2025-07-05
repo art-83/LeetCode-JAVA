@@ -1437,4 +1437,22 @@ public class Easy {
         }
         return false;
     }
+
+    // 2206. Divide Array Into Equal Pairs
+    public boolean divideArray(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int n : nums) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            } else {
+                map.put(n, map.get(n) + 1);
+            }
+        }
+        for(int n : nums) {
+            if(map.get(n) % 2 != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
