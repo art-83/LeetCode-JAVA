@@ -1455,4 +1455,11 @@ public class Easy {
         }
         return true;
     }
+
+    // 1636. Sort Array by Increasing Frequency
+    public boolean canBeEqual(int[] target, int[] arr) {
+        Arrays.sort(target);
+        Arrays.sort(arr);
+        return Arrays.equals(target, arr);
+    }
 }
