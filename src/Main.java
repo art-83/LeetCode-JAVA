@@ -4,12 +4,8 @@ import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
-        BigDecimal a = new BigDecimal("0.1");
-        BigDecimal b = new BigDecimal("0.2");
+        Solution solution = new Solution();
 
-        BigDecimal result = a.add(b);
-
-        System.out.printf("%.20f\n", 0.1 + 0.2);
-        System.out.printf("%.20f", result);
+        System.out.println(solution.easy.search(new int[]{-1,0,3,5,9,12}, 9));
     }
 }

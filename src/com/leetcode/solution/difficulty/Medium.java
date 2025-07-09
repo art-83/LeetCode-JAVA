@@ -75,4 +75,6 @@ public class Medium {
         System.out.printf("%s\n",str.toString());
         return false;
     }
+
+
 }
